@@ -1,17 +1,35 @@
-# Run both APEX models and reproduce the sequence ranking
+# Score sequences with APEX and reproduce the ranking
 
-The portable scoring commands run actual neural inference using the frozen
-upstream APEX checkpoints. They preserve the original project scoring wrappers,
-verify upstream revisions and every checkpoint hash, and calculate the same
-matched-11 activity and uncertainty aggregates used for the submitted ranking.
-External predictor weights are downloaded separately and are not bundled here.
+Run these commands from the repository root. `uv` installs the locked model
+dependencies automatically.
 
-## Install and obtain the exact upstream models
+## Recalculate the ranking
 
-Use Python 3.10 or later, from this submission repository:
+Using the saved predictions:
 
 ```bash
-python -m pip install -r scoring/requirements.txt
+uv run --locked --extra inference python scoring/rank.py \
+  --output-dir outputs/ranked_frozen
+```
+
+This writes:
+
+| File | Contents |
+| --- | --- |
+| `library_ranked.csv` | All 50,000 sequences in score order, with pass/fail flags |
+| `consensus_ranked.csv` | The 15,553 sequences passing both models' activity and uncertainty cutoffs |
+| `top100_scores.csv` and `top.fasta` | The first 100 consensus candidates that pass the reference-similarity check |
+| `ranking_metadata.json` | Counts, input/output hashes and comparison with the submitted Top 100 |
+
+The rank columns cover all 50K (`library_rank`), the consensus
+(`raw_consensus_rank`) and the Top 100 (`final_rank`). Outputs are not overwritten.
+
+## Download the models
+
+The APEX weights are kept in their original repositories. These are the exact
+revisions used for this submission:
+
+```bash
 mkdir -p external
 git clone https://gitlab.com/machine-biology-group-public/apex.git external/apex
 git -C external/apex checkout 203055125196eee0b0f3c456335d3e9aede0e942
@@ -19,145 +37,77 @@ git clone https://gitlab.com/machine-biology-group-public/apex-pathogen.git exte
 git -C external/apex-pathogen checkout 417a4441a1e6ef8b10d2352e1c059622d5259f3a
 ```
 
-The legacy repository must contain `AMP_DL_model_twohead.py`, `best_key_list`,
-and all 40 files in `trained_models/`. The pathogen repository must contain
-`APEX_models.py` and all eight files in `APEX_pathogen_models/`. Expected names
-and SHA256 hashes are recorded in `scoring/model_provenance.json`. Repository
-revision, model-definition code hash, and every model-file hash are checked
-before loading. These upstream checkpoint files contain serialized model
-objects and are loaded using the same original project mechanism; use the
-verified upstream files.
+Legacy APEX uses 40 checkpoints; APEX-pathogen uses eight. The script checks
+repository revisions and the SHA256 hashes of model code and every checkpoint in
+[model_provenance.json](../scoring/model_provenance.json).
 
-The legacy APEX license is restricted to **non-profit research purposes**;
-see the upstream [license at the frozen revision](https://gitlab.com/machine-biology-group-public/apex/-/blob/203055125196eee0b0f3c456335d3e9aede0e942/LICENSE).
-APEX-pathogen uses the [MIT license](https://gitlab.com/machine-biology-group-public/apex-pathogen/-/blob/417a4441a1e6ef8b10d2352e1c059622d5259f3a/LICENSE).
-The scoring directory contains project-owned wrappers, not redistributed
-upstream model code or checkpoints, and does not relicense upstream materials.
+Legacy APEX is licensed for
+[non-profit research](https://gitlab.com/machine-biology-group-public/apex/-/blob/203055125196eee0b0f3c456335d3e9aede0e942/LICENSE).
+APEX-pathogen uses the
+[MIT license](https://gitlab.com/machine-biology-group-public/apex-pathogen/-/blob/417a4441a1e6ef8b10d2352e1c059622d5259f3a/LICENSE).
 
-## Score the frozen 50,000-sequence library
+## Run both models
 
 ```bash
-python scoring/run_apex.py legacy \
+uv run --locked --extra inference python scoring/run_apex.py legacy \
   --model-root external/apex \
   --output-dir outputs/apex_legacy \
   --device auto
 
-python scoring/run_apex.py pathogen \
+uv run --locked --extra inference python scoring/run_apex.py pathogen \
   --model-root external/apex-pathogen \
   --output-dir outputs/apex_pathogen \
   --device auto
 ```
 
-The default input is `data/library_50000.csv`. Use `--input path/to/sequences.csv`
-to score another unique, canonical 8–50-residue sequence list. A `sequence`
-column is required. Missing candidate identifiers and SHA256 sequence hashes
-are generated deterministically. `--device auto` selects CUDA when available
-and CPU otherwise; `--device cpu` explicitly selects the fallback. Defaults
-match the original submission: batch size 3000, seed 42, four CPU threads,
-deterministic PyTorch algorithms, TF32 disabled, and cuDNN benchmarking disabled.
+The default input is `data/library_50000.csv`. To score another list, add
+`--input path/to/sequences.csv`. It must have a `sequence` column containing
+unique, uppercase sequences of 8–50 standard amino acids. Missing IDs and hashes
+are filled in automatically.
 
-Each backend writes:
+`--device auto` selects CUDA or falls back to CPU; `--device cpu` forces CPU.
+Defaults match the original run: batch size 3000, seed 42 and deterministic
+inference settings.
 
-- `scores.csv`: all strain-specific MICs, sample SDs of log10 MIC, and the
-  original backend aggregates.
-- `aggregate_scores.csv`: candidate keys plus the four matched-11 aggregates
-  needed for the consensus calculation.
-- `input_sequences.csv`, `runtime.json`, `manifest.json`, `summary.json`, and
-  `ensemble_state.npz`: normalized inputs and resumable inference provenance.
+Each run saves per-strain predictions in `scores.csv`, matched-11 summaries in
+`aggregate_scores.csv`, and settings and progress files. Repeat the same command
+to resume. Changed inputs or settings need a new output directory.
 
-Rerunning with identical inputs and runtime settings resumes after the last
-completed ensemble member. A changed input, model set, device, or runtime
-contract requires a new output directory. Full 50K inference is substantially
-faster on a GPU; CPU is supported for portability and small checks.
+## Rank the new predictions
 
-## Rank all 50K and select the consensus Top 100
-
-To reproduce ranking from the supplied frozen aggregate scores, without
-rerunning the neural models:
+For predictions recomputed on the submitted 50K library:
 
 ```bash
-python scoring/rank.py --output-dir outputs/ranked_frozen
-```
-
-To rank newly computed complete score tables instead:
-
-```bash
-python scoring/rank.py \
+uv run --locked --extra inference python scoring/rank.py \
   --legacy-scores outputs/apex_legacy/scores.csv \
   --pathogen-scores outputs/apex_pathogen/scores.csv \
   --output-dir outputs/ranked_rescored
 ```
 
-The two `aggregate_scores.csv` files can also be supplied to these same options.
-Alternatively, `--aggregate path/to/dual_apex_scores.csv` accepts a combined
-aggregate table. Input keys must match the 50,000-row library exactly.
-`--library` can point to a relocated library file, but that file must satisfy
-the frozen generator's complete schema, identifiers, ordering, and seed-42
-selection-key constraints; this ranking CLI does not accept arbitrary generated
-sequence lists. All library uniqueness, length, residue, hash, selection-order,
-and reference-exclusion checks are reused from the frozen generator. The
-separate `run_apex.py` scoring command does accept other canonical unique
-sequence lists.
+The same options accept `aggregate_scores.csv`; `--aggregate` accepts a combined
+table. Scores must match the library's IDs, sequences and hashes exactly.
 
-Outputs are:
+The ranking command expects the submitted 50K library's schema, identifiers,
+ordering and seed-42 selection keys. `--library` lets you change that file's
+location; it does not make the ranking command accept arbitrary new samples.
+The scoring command above can score other sequence lists.
 
-- `library_ranked.csv`: all 50,000 sequences sorted by APEX-pathogen activity,
-  then legacy matched-11 activity, then sequence SHA256, all ascending.
-  `library_rank` is the full-library rank. Gate flags are retained;
-  `raw_consensus_rank` and `final_rank` are populated only where applicable.
-- `consensus_ranked.csv`: the sequences passing both models' activity and
-  uncertainty gates, with their consensus ranks.
-- `top100_scores.csv` and `top.fasta`: the first 100 consensus candidates that
-  also satisfy the official reference-similarity limit.
-- `ranking_metadata.json`: counts, ranking semantics, input and output hashes,
-  and whether the selected FASTA matches the frozen submission exactly.
+## How the order is chosen
 
-The complete-library ranking does not imply that every sequence passes the
-activity gates. Filtering and Top 100 selection are separate from assigning
-all-library ranks. The script reuses `rank_consensus` and `select_top` from
-`src/flow_dual_apex_submission/generate.py` and refuses to overwrite existing
-ranked outputs.
+Both models use the same 11-target panel. Activity is the median log10 of each
+strain's arithmetic ensemble-mean MIC, in µM; lower is better. Uncertainty is the
+median sample SD of member-level log10 MIC across those targets. Legacy APEX's
+broader summaries are excluded from consensus.
 
-## Exact score and selection definitions
+Candidates must pass both models' activity and uncertainty cutoffs. All ranking
+uses APEX-pathogen activity first, legacy matched-11 activity second, and
+sequence SHA256 to break ties, all ascending. The Top 100 are taken from the
+consensus in that order, accepting only candidates whose maximum
+`Levenshtein.ratio` against the official reference is at most 0.8.
 
-Both models first predict each strain's MIC for every ensemble member. The
-strain-specific MIC is the **arithmetic ensemble mean in micromolar units**.
-Activity is the median of log10 of these means across 11 strains. Uncertainty
-is the median of the **sample SDs** of member-level log10 MIC across those same
-11 strains. Lower activity scores correspond to lower predicted MIC.
-
-For legacy APEX, the exact 11 target names are read from
-`data/legacy_selected11_thresholds.json`. The legacy scorer also retains its
-original 15-pathogen and 34-strain summary columns in `scores.csv`; those broader
-summaries are not used for dual-model consensus. For APEX-pathogen, all its 11
-outputs are used. Original upstream spellings (including AIG/AIC and PAO1/PA01)
-are retained, and per-backend target names are resolved explicitly.
-
-The frozen gates are:
-
-| Model | Activity, strictly below | Median log10-MIC SD, at most |
-| --- | ---: | ---: |
-| Legacy APEX, matched 11 | 1.8882911493880563 | 0.2771194710771432 |
-| APEX-pathogen | 2.4281704039353142 | 0.35883064907437795 |
-
-These are frozen reference-distribution screening cutoffs, not calibrated
-probabilities of antibacterial activity. Candidates must pass all four gates.
-The consensus is sorted by APEX-pathogen activity, legacy matched-11 activity,
-and sequence SHA256. Candidates are then examined in order against every
-official reference sequence; only those with maximum `Levenshtein.ratio <= 0.8`
-are accepted until 100 remain. The supplied frozen scores yield 15,553 consensus
-candidates, and 132 are examined to obtain the submitted Top 100.
-
-## Verification and numerical reproducibility
-
-Both portable wrappers were run on CPU for two archived candidates through all
-40 legacy and eight pathogen models. Every strain-specific and aggregate
-prediction agreed with the archived CUDA scores at `rtol=1e-5, atol=1e-6`.
-Recomputing ranking from all frozen aggregates reproduced the original Top 100
-FASTA exactly. Small numerical differences can occur across CPU/GPU, PyTorch
-versions, and batch sizes; fresh rescoring is not promised to produce bytewise
-identical floating-point tables or unchanged decisions for candidates extremely
-close to a cutoff. The default frozen generator remains the route for exact
-reconstruction of the submitted sequences and order.
-
-Related-model agreement does not constitute independent experimental validation.
+The exact target names and cutoffs are in the
+[legacy thresholds](../data/legacy_selected11_thresholds.json) and
+[pathogen thresholds](../data/pathogen_thresholds.json); see the
+[method summary](method_summary.md) for the selection details. Fresh inference
+can produce small numerical differences across hardware or package versions.
+Use the saved predictions when you need the exact submitted order.
