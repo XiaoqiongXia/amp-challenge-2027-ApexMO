@@ -31,13 +31,3 @@ Activity cutoffs are the respective known-AMP median scores; uncertainty cutoffs
 Both activity gates passed for 19,508 library sequences. Requiring both uncertainty gates left 15,553. These candidates were ordered by APEX-pathogen median log10(MIC), then original APEX matched-11 median log10(MIC), then sequence SHA256; all ascending.
 
 Starting at the highest-ranked consensus candidate, the exact maximum Levenshtein.ratio against all 39,448 official reference sequences was computed. Candidates with a maximum greater than 0.8 were rejected; exactly 0.8 is permitted. The first 132 ranked candidates were examined, 32 were rejected, and the first 100 passing candidates form top.fasta. FASTA record order is priority order; final_rank in top100_scores.csv is the same order. Every Top 100 sequence is present in library.fasta.
-
-## Reference and validation
-
-Official rules and reference were pinned to commit 5c8a5d8e2551c8cf572d3d3bfcfe7633b109d91e of https://github.com/szczurek-lab/amp-challenge-2027. Official reference Git blob: 207189d23500f5a2f11865bbeafd9da240408a79.
-
-The official validator's sequence-count, alphabet, length, duplicate, exact-reference-overlap, Top 100 membership, and Top 100 similarity functions passed. The repository additionally provides a deterministic uv run generate entry point that reconstructs the exact submitted FASTAs from archived candidates and predictions. This is distinct from fresh neural inference; see the README and inference documentation.
-
-Both scoring runs used NVIDIA H100 GPUs, Python 3.10.20, PyTorch 2.8.0+cu128, NumPy 2.2.6, pandas 2.3.3, seed 42, batch size 3000, deterministic operations, and TF32 disabled. Reference similarity used Levenshtein 0.27.3. Original calibration provenance is retained separately, including its historical software versions.
-
-Dual-model agreement is computational prioritization and is not independent experimental confirmation. The entire 50,000-member library is not being labeled active; only the selected subset satisfies the reported consensus gates. No experimental MIC, hemolysis, or mammalian toxicity validation is claimed for this submission.
