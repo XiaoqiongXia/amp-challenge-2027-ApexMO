@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flow-dual-apex-submission"
+version = "0.1.0"
+description = "Reproduce a frozen Flow peptide library and dual-APEX consensus submission"
+requires-python = ">=3.10"
+dependencies = ["Levenshtein==0.27.3", "rapidfuzz==3.14.1"]
+
+[project.optional-dependencies]
+inference = [
+    "torch==2.8.0",
+    "flow-matching==1.0.10",
+    "numpy==2.2.6",
+    "pandas==2.3.3",
+    "PyYAML==6.0.2",
+]
+
+[project.scripts]
+generate = "flow_dual_apex_submission.generate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

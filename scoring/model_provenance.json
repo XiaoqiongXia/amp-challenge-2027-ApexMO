@@ -1,0 +1,73 @@
+{
+  "legacy": {
+    "repository": "https://gitlab.com/machine-biology-group-public/apex",
+    "revision": "203055125196eee0b0f3c456335d3e9aede0e942",
+    "model_sha256": {
+      "trained_all_model_2&128&2048&1e-05&0.01&1.0_ensemble_0": "5129e591e023240e45627c581a7cf7096987fbc4235c58b3f0f694634107c710",
+      "trained_all_model_2&128&2048&1e-05&0.01&1.0_ensemble_1": "bbb35ea7bdaf8c8929ca697bbe844bdba8d554646b50cf176c40cfa9dff31111",
+      "trained_all_model_2&128&2048&1e-05&0.01&1.0_ensemble_2": "158cf113ecd662cee113e9100252f0177cafc2e6f6ed10529b724e2cc3b74c0a",
+      "trained_all_model_2&128&2048&1e-05&0.01&1.0_ensemble_3": "0e89a39e833c3108a47d74d1cf953da7feea7748a53322eb1e84ff3697d3452f",
+      "trained_all_model_2&128&2048&1e-05&0.01&1.0_ensemble_4": "1ff5aa119d90abf88fd9fe3014f64d6ea048806f9817b1b0562c9d99e8e1cfb1",
+      "trained_all_model_2&128&2048&1e-06&0.0&1.0_ensemble_0": "cf62e35d345a043196d4ed229cbf9dec63e314339d6f295dcb9de0596c36f26b",
+      "trained_all_model_2&128&2048&1e-06&0.0&1.0_ensemble_1": "753350fe0745b11926ff4cb4a47bd2a3a46fd47a296f69abd0217fa0a920e63f",
+      "trained_all_model_2&128&2048&1e-06&0.0&1.0_ensemble_2": "a191ca1720bb070f30435a481db7d8cfdad3b226a70bc4e2bc8354ed9e1c98fa",
+      "trained_all_model_2&128&2048&1e-06&0.0&1.0_ensemble_3": "3dbbfa013b3b801d12aa6a485d1b4748df9513e10a31b22ad98f6a07250637d5",
+      "trained_all_model_2&128&2048&1e-06&0.0&1.0_ensemble_4": "cea458d303701e925fac3eb6b8c4584767d964a3b12c75be4ffa3c18dc977d6f",
+      "trained_all_model_2&128&512&1e-05&0.01&1.0_ensemble_0": "95e6155f2503bcba6faee55b4d977d97a6d4cad40145895572d360c2d0d64938",
+      "trained_all_model_2&128&512&1e-05&0.01&1.0_ensemble_1": "87462016867193752fc64d6453a66f11e3f07aa232178a77074f997931448ebe",
+      "trained_all_model_2&128&512&1e-05&0.01&1.0_ensemble_2": "357d13758fc7552a2df00612a49dbbee9a5c40ab381b0a089954deb654b2a9f4",
+      "trained_all_model_2&128&512&1e-05&0.01&1.0_ensemble_3": "8e11dbdcd43d6b435c46b7b24145c72b4ea634f6d39294cdaead4548bff9e081",
+      "trained_all_model_2&128&512&1e-05&0.01&1.0_ensemble_4": "e228f41ebbf488f7ec5b797e7131015d57da2611d9a96583d97acb85e749abba",
+      "trained_all_model_2&256&2048&1e-06&0.1&1.0_ensemble_0": "98865b86b1831f75f3f376f716d20b24f6ed7488e5523d8c18f75f6b91cfbacc",
+      "trained_all_model_2&256&2048&1e-06&0.1&1.0_ensemble_1": "e8385c105e7fbc525c03cfdc96fa0ef7ac245ddd72395d9eda367cc36a53798e",
+      "trained_all_model_2&256&2048&1e-06&0.1&1.0_ensemble_2": "885ebd89f459e391b3960420dd08985a73cc0ccab3a035d4d5b804bfe09d301e",
+      "trained_all_model_2&256&2048&1e-06&0.1&1.0_ensemble_3": "2aca8b50b227c066cabeb1f84b4bd7d049345c5d7cd9df702183ff99de5dec25",
+      "trained_all_model_2&256&2048&1e-06&0.1&1.0_ensemble_4": "ef71f06ed3eefd03832c5a23d63a39fee4c8198fc188b79c80d74ca3a5231c6d",
+      "trained_all_model_3&128&2048&1e-05&0.1&1.0_ensemble_0": "9709a31a7e757e6427e18a9813f50b4826843ecc8781e2bf7c479db1ad2d8407",
+      "trained_all_model_3&128&2048&1e-05&0.1&1.0_ensemble_1": "d26791daae2d23cb02cd7bf679f8e37129b3769080bb3c20a77e442b9ae5d0a8",
+      "trained_all_model_3&128&2048&1e-05&0.1&1.0_ensemble_2": "bd413d44eb2441956ed6e32cebde822b696b6267436f25465f24a96fc5019c5a",
+      "trained_all_model_3&128&2048&1e-05&0.1&1.0_ensemble_3": "22fc35025072adcb10627b786b2fb02d658d2a4d0984c5e4207161bfac6219b6",
+      "trained_all_model_3&128&2048&1e-05&0.1&1.0_ensemble_4": "bae9e66e4a343b18dea94b2f0c70caeaf8da86f32179fbe5e6682ebc2937bfac",
+      "trained_all_model_3&128&512&1e-05&0.001&1.0_ensemble_0": "4112d56e1618c4f608c35f513c6eb044439225ae480afade984c988638ec2ada",
+      "trained_all_model_3&128&512&1e-05&0.001&1.0_ensemble_1": "340455879ec34aa622a012b39ffdefa8ed12d2e5d678f11df40bf9f326102960",
+      "trained_all_model_3&128&512&1e-05&0.001&1.0_ensemble_2": "82c56879793caa886750add121a6d40240dffbd3f29d40c852b6b152ebb86b8a",
+      "trained_all_model_3&128&512&1e-05&0.001&1.0_ensemble_3": "417d80c12969f392b1d7156192411ce5cbadd89dc844e99f46f5c72f9174ec7b",
+      "trained_all_model_3&128&512&1e-05&0.001&1.0_ensemble_4": "18d1dc53b3a96a92b5b31f665bd54df7a5c958c2a8e24745f59cbd7ba731a677",
+      "trained_all_model_3&256&2048&1e-06&0.1&1.0_ensemble_0": "e672ae01f8ee0a3bdd53ff3d1b16a0741bd7b1488ff2c6fb692befdad6d22327",
+      "trained_all_model_3&256&2048&1e-06&0.1&1.0_ensemble_1": "3687ee964cbc8188dd2d2f996dec36418fb16c1cda70e0b1761921f5ee429cc4",
+      "trained_all_model_3&256&2048&1e-06&0.1&1.0_ensemble_2": "2e03bc4d367bca3456816182c1d1ad7fad2321481f07b3a2eaa9498ee2c0db44",
+      "trained_all_model_3&256&2048&1e-06&0.1&1.0_ensemble_3": "86d10825571edbc33f4c3b5ba3540f77a8c81c2e76245aa7c8fbc76a0f6994a3",
+      "trained_all_model_3&256&2048&1e-06&0.1&1.0_ensemble_4": "20583d6497ea36a7b10c9d737984320976d44730cafe4e295c19dd4558c4104c",
+      "trained_all_model_3&256&512&1e-06&0.0&1.0_ensemble_0": "2789cdd77bd8c5e466d350346a4128f31a6235aa35d9722c06d2ce37183762c4",
+      "trained_all_model_3&256&512&1e-06&0.0&1.0_ensemble_1": "c48ef5818a7a4a18e5107df3dd047fcfc849696fcf5d4ac810bf96085ad3ec35",
+      "trained_all_model_3&256&512&1e-06&0.0&1.0_ensemble_2": "1f2826597949ebf6e79b7fca44ff12d189ec3f3cf411e1256e3f008760beaefc",
+      "trained_all_model_3&256&512&1e-06&0.0&1.0_ensemble_3": "0665eb7ee9a68136dec6421a64b75001f9a8abaa99e03bd60f32d761c3e9397d",
+      "trained_all_model_3&256&512&1e-06&0.0&1.0_ensemble_4": "cef4acc57d8df6462ac9d3261525ca9f01a6e72746b19eb3997e977c2f13ae9d"
+    },
+    "upstream_code_file": "AMP_DL_model_twohead.py",
+    "upstream_code_sha256": "742455008237509638e385c3e0066ffd12a7f79fc2644a5f4cfe653a2fcde5bd",
+    "license": "non-profit research only"
+  },
+  "pathogen": {
+    "repository": "https://gitlab.com/machine-biology-group-public/apex-pathogen",
+    "revision": "417a4441a1e6ef8b10d2352e1c059622d5259f3a",
+    "model_sha256": {
+      "APEX_2&256&2048&1e-05&0.0&0.1": "fccd356cbb901c08fe7d35663f3902a5d2d01a4c257203af931aabf02bdd7913",
+      "APEX_3&128&1024&1e-06&0.001&2.0": "857e17d7703d771f82fe63dd82f15a86dd60a0b4f705577a56b88485d60a60c6",
+      "APEX_3&128&2048&1e-06&0.0&1.0": "9db48419381d7bcdac2ad3154aa6b67327c6da47dce973bb8a0745e5632ff79a",
+      "APEX_3&128&2048&1e-06&0.001&0.1": "9362c006ccc0e7ae3fd5210f2cbbe9ed02cec4ff6383f95a119acab9b020aea4",
+      "APEX_3&128&2048&1e-06&0.001&2.0": "58b5eeb6c8c8c4b94d1d776c92f5c653177cfcf3b77ec41cf409839304c8cc80",
+      "APEX_3&256&2048&1e-05&0.001&0.1": "6d3f2bd66c6b3f138e98fb13d1a3010ee94714b9ebf9673475192b365d388858",
+      "APEX_3&256&2048&1e-06&0.001&0.1": "69f101c4e3a1309166493f96221a8c44e37c87bd7a988240b32e26819162c954",
+      "APEX_3&256&512&1e-06&0.0&2.0": "d56b8153a4618620f3b3f91aeb204d6ba8ac38af2ab2f3dff77a28863bc49059"
+    },
+    "upstream_code_file": "APEX_models.py",
+    "upstream_code_sha256": "34d31fe74cb74a2320c7a7299cab4319ab7f9967637b27a506a3a6c600296f48",
+    "license": "MIT"
+  },
+  "project_source_sha256": {
+    "apex.py": "451aa5668834c9856f13a6f69a1af696a68eb9a18793408d17337945b8e98eb2",
+    "apex_pathogen.py": "7d38dd1bf39e003877c8e12ac7af5d86b234ed25a1c72bc09fe25c7553ae9031",
+    "tokenizer.py": "a4a21ef2aa6accf6627a21f041cb393d369c08dc926bea8c0eb847aef888363e"
+  }
+}

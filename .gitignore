@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
+build/
+dist/
+*.tmp
+generate/.staging-*/
+outputs/
+external/
+# Submitted generate/*.fasta and score/validation outputs are intentionally tracked.

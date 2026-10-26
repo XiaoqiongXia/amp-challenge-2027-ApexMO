@@ -1,0 +1,62 @@
+{
+  "expected_counts": {
+    "consensus": 15553,
+    "dual_apex_active_pass": 19508,
+    "dual_apex_consensus_pass": 15553,
+    "dual_apex_uncertainty_pass": 45122,
+    "legacy_active_pass": 23439,
+    "legacy_activity_uncertainty_pass": 20603,
+    "legacy_uncertainty_pass": 47147,
+    "library": 50000,
+    "pathogen_active_pass": 23119,
+    "pathogen_activity_uncertainty_pass": 20814,
+    "pathogen_uncertainty_pass": 47543,
+    "reference_examined_candidates": 132,
+    "reference_input_records": 39448,
+    "reference_rejected_candidates": 32,
+    "reference_unique_sequences": 39448,
+    "top": 100
+  },
+  "expected_outputs": {
+    "library.fasta": "007a661ac2fc9387da53d888631c80d02ac4987831c778344742f30335ffea8e",
+    "top.fasta": "e6b3d160bc9c6541a36bd78c27f0e074aa3fa14c8081cc72fb4c0f06b6277ee6"
+  },
+  "files": {
+    "data/antibacterial.fasta": {
+      "bytes": 4318298,
+      "sha256": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9"
+    },
+    "data/dual_apex_scores.csv": {
+      "bytes": 19528973,
+      "sha256": "a1d7d040fe383809fe4a090f8bcc362d782a6dae9753b553bc5589216fb60415"
+    },
+    "data/legacy_selected11_thresholds.json": {
+      "bytes": 1255,
+      "sha256": "09e09410cc2aefdccd8611577b0f24718d3c5b4713a5a317c492e35923fe89ab"
+    },
+    "data/library_50000.csv": {
+      "bytes": 9291514,
+      "sha256": "16eef0f4383bf6f93286c0e4103395f73c9885a5ff6a2fba18106a38f57fafea"
+    },
+    "data/pathogen_thresholds.json": {
+      "bytes": 809,
+      "sha256": "09c0d6079a2d4fb01d3b1914f2e56b3e0eb9de3c1a1831b6f79cb91f458f9495"
+    },
+    "scripts/official_verify_submission.py": {
+      "bytes": 9087,
+      "sha256": "3f2eb1bd61200abfccf07d86e9c226d57f3d12abcf25715af1d90f41531942cf"
+    }
+  },
+  "mode": "frozen-sample reconstruction; no model inference",
+  "official_commit": "5c8a5d8e2551c8cf572d3d3bfcfe7633b109d91e",
+  "official_repository": "https://github.com/szczurek-lab/amp-challenge-2027",
+  "original_unsanitized_inputs_sha256": {
+    "inputs/legacy_selected11_thresholds.json": "93032ed3e0adcdc15bc0825d12c355b87ae229d29b9322ab5da0bebb683b2a44",
+    "inputs/pathogen_thresholds.json": "845a284037d3f0a38e50817d3c2daef0b8ca05792cb893f404e2bc9fa64cfad0",
+    "processed_data/dual_apex_scores.csv": "2c6b4afa72fb83d6342c23d12a880f6b164949d36709ada45faf87442067e282",
+    "processed_data/library_50000.csv": "fa7aba482122538174dae52963eed9ae80b1830baa73344c55c68e54a7aba079"
+  },
+  "sanitization": "Local source checkpoint/path columns removed; threshold source paths reduced to basenames. Sequence strings and frozen numerical score strings preserved.",
+  "schema_version": 1,
+  "seed": 42
+}

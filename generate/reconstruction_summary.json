@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "consensus": 15553,
+    "dual_apex_active_pass": 19508,
+    "dual_apex_consensus_pass": 15553,
+    "dual_apex_uncertainty_pass": 45122,
+    "legacy_active_pass": 23439,
+    "legacy_activity_uncertainty_pass": 20603,
+    "legacy_uncertainty_pass": 47147,
+    "library": 50000,
+    "pathogen_active_pass": 23119,
+    "pathogen_activity_uncertainty_pass": 20814,
+    "pathogen_uncertainty_pass": 47543,
+    "reference_examined_candidates": 132,
+    "reference_rejected_candidates": 32,
+    "reference_unique_sequences": 39448,
+    "top": 100
+  },
+  "input_manifest_sha256": "c8cca3cfeeaff6937100afd5b4ad673e58c57115259318164d13f0e87e1e93c2",
+  "mode": "frozen-sample reconstruction; no model inference",
+  "outputs_sha256": {
+    "library.fasta": "007a661ac2fc9387da53d888631c80d02ac4987831c778344742f30335ffea8e",
+    "top.fasta": "e6b3d160bc9c6541a36bd78c27f0e074aa3fa14c8081cc72fb4c0f06b6277ee6",
+    "top100_scores.csv": "ce527bb70ccb09216062788c4f6279d9b3057ca5a6a63ff6648ccbb93f2ea758"
+  },
+  "reference_maximum_similarity_allowed": 0.8,
+  "seed": 42,
+  "status": "passed"
+}

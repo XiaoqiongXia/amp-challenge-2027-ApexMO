@@ -1,0 +1,72 @@
+{
+  "checks": [
+    {
+      "function": "_verify_sequences",
+      "status": "passed"
+    },
+    {
+      "function": "_verify_no_overlap",
+      "status": "passed"
+    },
+    {
+      "function": "_verify_top",
+      "status": "passed",
+      "top_k": 100
+    },
+    {
+      "function": "_veritfy_max_simularity",
+      "status": "passed",
+      "threshold": 0.8
+    },
+    {
+      "check": "exact one-to-one candidate_id + sequence + sequence_sha256 joins and equal key sets",
+      "status": "passed"
+    },
+    {
+      "check": "input hashes, complete checkpoint sets matching calibration manifests, frozen-calibration revisions, and selected11 model-set hash",
+      "status": "passed"
+    },
+    {
+      "check": "direct per-strain median and uncertainty calculations match aggregate fields",
+      "status": "passed"
+    },
+    {
+      "check": "FASTA identifiers and sequence order equal corresponding CSV rows",
+      "status": "passed"
+    },
+    {
+      "check": "all selection inputs unchanged during execution",
+      "status": "passed"
+    }
+  ],
+  "counts": {
+    "consensus": 15553,
+    "dual_apex_active_pass": 19508,
+    "dual_apex_consensus_pass": 15553,
+    "dual_apex_uncertainty_pass": 45122,
+    "legacy_active_pass": 23439,
+    "legacy_activity_uncertainty_pass": 20603,
+    "legacy_uncertainty_pass": 47147,
+    "library": 50000,
+    "pathogen_active_pass": 23119,
+    "pathogen_activity_uncertainty_pass": 20814,
+    "pathogen_uncertainty_pass": 47543,
+    "reference_examined_candidates": 132,
+    "reference_input_records": 39448,
+    "reference_rejected_candidates": 32,
+    "reference_unique_sequences": 39448,
+    "top": 100
+  },
+  "library_sha256": "007a661ac2fc9387da53d888631c80d02ac4987831c778344742f30335ffea8e",
+  "not_performed": [
+    "Official repository cloning, dependency installation, generator entry-point execution, and two-run generator reproducibility checks"
+  ],
+  "official_repository_commit": "5c8a5d8e2551c8cf572d3d3bfcfe7633b109d91e",
+  "official_validator_sha256": "3f2eb1bd61200abfccf07d86e9c226d57f3d12abcf25715af1d90f41531942cf",
+  "reference_sha256": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9",
+  "repository_checks": "See generate/reconstruction_summary.json and metadata/repository_validation.json for subsequent repository validation.",
+  "scope": "Historical sequence-package audit completed before the standalone GitHub repository was assembled. The not_performed field refers only to this earlier audit.",
+  "status": "passed",
+  "top_max_reference_similarity": 0.8,
+  "top_sha256": "e6b3d160bc9c6541a36bd78c27f0e074aa3fa14c8081cc72fb4c0f06b6277ee6"
+}

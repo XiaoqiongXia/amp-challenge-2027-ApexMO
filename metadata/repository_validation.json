@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "check": "Locked clean-environment unittest suite",
+      "count": 4,
+      "status": "passed"
+    },
+    {
+      "check": "uv run --locked --offline generate entry point",
+      "status": "passed"
+    },
+    {
+      "check": "Two reconstructions are byte-identical and match archived FASTA hashes",
+      "status": "passed"
+    },
+    {
+      "check": "Tampered inputs and unsupported seeds rejected; threshold boundary semantics",
+      "status": "passed"
+    },
+    {
+      "check": "Three exact EMA exports, original/portable CPU logits, real sampling and repeatability",
+      "details": "metadata/flow_model_manifest.json",
+      "status": "passed"
+    },
+    {
+      "check": "Distributable text and weight metadata contain no absolute user paths, credentials or raw training sequences",
+      "status": "passed"
+    },
+    {
+      "atol": 1e-06,
+      "check": "Portable APEX wrappers: all 40 legacy and 8 pathogen members on two sequences, CPU versus original GPU predictions",
+      "rtol": 1e-05,
+      "status": "passed"
+    },
+    {
+      "check": "All 50K ranking, 15553 consensus ranking, and exact Top 100 sequence/order reconstructed by standalone scoring/rank.py",
+      "details": "rankings/ranking_metadata.json",
+      "status": "passed"
+    },
+    {
+      "check": "Portable ranking from full per-strain score tables equals ranking from archived matched-11 aggregates byte for byte",
+      "status": "passed"
+    }
+  ],
+  "dependency_lock_sha256": "3cc009b70f9c393d3b0e9cf7332a5708f83a8eb561139874ea38f35bd54130a9",
+  "python_version": "3.10.20",
+  "remote_clone_validation": "A separate end-to-end official-validator run is performed after push; this record describes pre-push checks.",
+  "scope": "Standalone repository validation before first GitHub push",
+  "status": "passed",
+  "submission_sha256": {
+    "library.fasta": "007a661ac2fc9387da53d888631c80d02ac4987831c778344742f30335ffea8e",
+    "top.fasta": "e6b3d160bc9c6541a36bd78c27f0e074aa3fa14c8081cc72fb4c0f06b6277ee6"
+  },
+  "uv_version": "0.9.18"
+}

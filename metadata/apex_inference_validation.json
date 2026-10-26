@@ -1,0 +1,34 @@
+{
+  "legacy": {
+    "sequences": 2,
+    "scored_columns": 73,
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "maximum_absolute_difference": 0.0007129355892629974,
+    "maximum_relative_difference": 1.797152561071597e-06,
+    "passes": true,
+    "comparison": "CPU inference against archived CUDA scores",
+    "aggregate_columns": [
+      "legacy_selected11_median_log10_mic",
+      "legacy_selected11_median_mic_um",
+      "legacy_selected11_median_log10_mic_sd",
+      "legacy_selected11_max_log10_mic_sd"
+    ]
+  },
+  "pathogen": {
+    "sequences": 2,
+    "scored_columns": 27,
+    "rtol": 1e-05,
+    "atol": 1e-06,
+    "maximum_absolute_difference": 0.0003822892346079243,
+    "maximum_relative_difference": 1.2864226689516585e-05,
+    "passes": true,
+    "comparison": "CPU inference against archived CUDA scores",
+    "aggregate_columns": [
+      "apex_pathogen_median_log10_mic",
+      "apex_pathogen_median_mic_um",
+      "apex_pathogen_median_log10_mic_sd",
+      "apex_pathogen_max_log10_mic_sd"
+    ]
+  }
+}

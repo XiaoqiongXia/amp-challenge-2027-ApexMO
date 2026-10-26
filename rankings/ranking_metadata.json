@@ -1,0 +1,62 @@
+{
+  "counts": {
+    "library": 50000,
+    "consensus": 15553,
+    "top": 100,
+    "reference_examined": 132,
+    "legacy_active_pass": 23439,
+    "legacy_uncertainty_pass": 47147,
+    "legacy_activity_uncertainty_pass": 20603,
+    "pathogen_active_pass": 23119,
+    "pathogen_uncertainty_pass": 47543,
+    "pathogen_activity_uncertainty_pass": 20814,
+    "dual_apex_active_pass": 19508,
+    "dual_apex_uncertainty_pass": 45122,
+    "dual_apex_consensus_pass": 15553
+  },
+  "ranking_ascending": [
+    "apex_pathogen_median_log10_mic",
+    "legacy_selected11_median_log10_mic",
+    "sequence_sha256"
+  ],
+  "all_library_rank_definition": "Score order for all candidates, regardless of consensus status",
+  "consensus_implementation": "src/flow_dual_apex_submission/generate.py:rank_consensus",
+  "top_selection_implementation": "src/flow_dual_apex_submission/generate.py:select_top",
+  "inputs": {
+    "library": {
+      "file": "library_50000.csv",
+      "sha256": "16eef0f4383bf6f93286c0e4103395f73c9885a5ff6a2fba18106a38f57fafea"
+    },
+    "legacy_scores": {
+      "file": "dual_apex_scores.csv",
+      "sha256": "a1d7d040fe383809fe4a090f8bcc362d782a6dae9753b553bc5589216fb60415"
+    },
+    "pathogen_scores": {
+      "file": "dual_apex_scores.csv",
+      "sha256": "a1d7d040fe383809fe4a090f8bcc362d782a6dae9753b553bc5589216fb60415"
+    },
+    "reference": {
+      "file": "antibacterial.fasta",
+      "sha256": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9"
+    },
+    "legacy_thresholds": {
+      "file": "legacy_selected11_thresholds.json",
+      "sha256": "09e09410cc2aefdccd8611577b0f24718d3c5b4713a5a317c492e35923fe89ab"
+    },
+    "pathogen_thresholds": {
+      "file": "pathogen_thresholds.json",
+      "sha256": "09c0d6079a2d4fb01d3b1914f2e56b3e0eb9de3c1a1831b6f79cb91f458f9495"
+    }
+  },
+  "outputs": {
+    "library_ranked.csv": "b52941768f94ca554de9e5d70befe9ef26fc4bbd4d6a249908bf6e10c9c7e06c",
+    "consensus_ranked.csv": "8c1d2aa9e943dcc85b84f4ac36e4f6b860b0778a08d3fba28b56a3575513a64e",
+    "top100_scores.csv": "c15a704b486f4b8e57348c7fb531025effe046d69d9f1f295708cb49fac3f190",
+    "top.fasta": "e6b3d160bc9c6541a36bd78c27f0e074aa3fa14c8081cc72fb4c0f06b6277ee6"
+  },
+  "frozen_top_sequence_order_matches": true,
+  "uncertainty": "Median of sample SDs in log10(MIC/uM), over the matched 11 targets",
+  "activity": "Median log10 of arithmetic ensemble mean MIC (uM), over the matched 11 targets",
+  "reference_rule": "Levenshtein.ratio <= 0.8 against all official reference sequences",
+  "limitations": "Model predictions and related-model agreement are not experimental validation."
+}
