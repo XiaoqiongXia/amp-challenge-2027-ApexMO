@@ -96,25 +96,4 @@ form the submission. Full definitions and provenance are in
 [`docs/method_summary.md`](docs/method_summary.md).
 
 Model agreement is computational prioritization, not experimental confirmation.
-The entire 50K library is not labeled antibacterial. No experimental MIC,
-hemolysis or mammalian-toxicity validation is claimed.
 
-## Validation and scope
-
-Rules, reference and the copied official validator are pinned to
-[`szczurek-lab/amp-challenge-2027` at `5c8a5d8`](https://github.com/szczurek-lab/amp-challenge-2027/tree/5c8a5d8e2551c8cf572d3d3bfcfe7633b109d91e).
-Input/output checksums, threshold provenance and model tensor checks are retained
-in `data/manifest.json`, `generate/reconstruction_summary.json` and `metadata/`.
-
-```bash
-uv run python -m unittest discover -s tests -v
-uv run python scripts/official_verify_submission.py \
-  https://github.com/XiaoqiongXia/amp-challenge-2027-flow-dual-apex \
-  --dir outputs/remote_validation
-```
-
-The second command requires permission to clone this private repository.
-This package supports the benchmark submission; it does not claim to meet the
-separate public-repository, permissive-license and full-training-data-disclosure
-requirements for co-authorship eligibility. Third-party rights are documented in
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
