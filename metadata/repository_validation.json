@@ -44,8 +44,31 @@
   ],
   "dependency_lock_sha256": "3cc009b70f9c393d3b0e9cf7332a5708f83a8eb561139874ea38f35bd54130a9",
   "python_version": "3.10.20",
-  "remote_clone_validation": "A separate end-to-end official-validator run is performed after push; this record describes pre-push checks.",
-  "scope": "Standalone repository validation before first GitHub push",
+  "remote_clone_validation": {
+    "checked_at_utc": "2026-10-26T02:26:17.536633+00:00",
+    "checks": [
+      "Clone private GitHub repository",
+      "Install dependencies with uv sync",
+      "Run uv run generate",
+      "Validate 50000 unique canonical 8-50-residue sequences",
+      "Validate Top100 membership",
+      "Exclude exact official-reference matches from library",
+      "Require Top100 maximum Levenshtein ratio <=0.8",
+      "Repeat generation and require byte-identical FASTAs",
+      "Verify all 59 published artifact checksums from cloned checkout"
+    ],
+    "does_not_assess": [
+      "Wet-lab antibacterial activity",
+      "Public licensing or full training-data disclosure",
+      "Organizer access permissions"
+    ],
+    "repository": "https://github.com/XiaoqiongXia/amp-challenge-2027-flow-dual-apex",
+    "result": "All checks passed. Submission is valid!",
+    "status": "passed",
+    "validated_commit": "2394ba14a9db7e50216456cad22303a3b7edabc1",
+    "validator": "scripts/official_verify_submission.py"
+  },
+  "scope": "Standalone repository validation, including a fresh private GitHub clone through the official validator",
   "status": "passed",
   "submission_sha256": {
     "library.fasta": "007a661ac2fc9387da53d888631c80d02ac4987831c778344742f30335ffea8e",
